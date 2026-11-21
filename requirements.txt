@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+demucs
+soundfile
+numpy
+yt-dlp
+imageio-ffmpeg

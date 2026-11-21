@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stem Mixer Studio</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="mixer-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <h1 id="songTitle">STEM MIXER</h1>
+        <p class="subtitle">Multi-stem synchronized mixer (CPU Demucs + Folder Stems)</p>
+      </div>
+
+      <form id="sourceForm" class="source-controls">
+        <select id="modeSelect" aria-label="Mode input">
+          <option value="separate" selected>Auto-Split Lagu (CPU)</option>
+          <option value="folder">Load Folder Stems</option>
+        </select>
+
+        <select id="modelSelect" aria-label="Model Demucs">
+          <option value="htdemucs" selected>htdemucs (Cepat, 4-stem)</option>
+          <option value="htdemucs_ft">htdemucs_ft (Fine-tuned, lebih detail)</option>
+          <option value="mdx_extra">mdx_extra (Alternatif ekstra)</option>
+        </select>
+
+        <input
+          id="pathInput"
+          type="text"
+          placeholder="Path file lagu atau URL YouTube..."
+          autocomplete="off"
+        />
+
+        <input
+          id="startInput"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          title="Start detik"
+          aria-label="Start detik"
+        />
+
+        <input
+          id="durationInput"
+          type="number"
+          min="2"
+          max="600"
+          step="1"
+          value="25"
+          title="Durasi detik"
+          aria-label="Durasi detik"
+        />
+
+        <button id="loadBtn" type="submit">LOAD</button>
+      </form>
+    </header>
+
+    <div id="statusBar" class="status-bar">Masukkan path file lagu atau folder stems dulu.</div>
+
+    <section class="transport-panel">
+      <button id="playPauseBtn" class="play-btn" type="button" aria-label="Play atau Pause">
+        <span id="playIcon">&#9654;</span>
+      </button>
+
+      <div class="timeline-wrap">
+        <input id="seekBar" type="range" min="0" max="1000" value="0" step="1" aria-label="Posisi lagu" />
+        <div class="time-row">
+          <span id="currentTime">0:00</span>
+          <div class="transport-actions">
+            <button id="loopBtn" type="button" class="mini-btn">LOOP: OFF</button>
+            <button id="abLoopBtn" type="button" class="mini-btn">SET A-B (0-10s)</button>
+            <button id="resetMixBtn" type="button" class="mini-btn">RESET MIX</button>
+            <button id="exportBtn" type="button" class="mini-btn accent">EXPORT MIX</button>
+          </div>
+          <span id="totalTime">0:00</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="console-grid">
+      <div id="tracksContainer" class="tracks-container"></div>
+
+      <aside class="master-strip">
+        <div class="master-title">MASTER</div>
+        <div id="masterReadout" class="master-readout">GAIN<br />100%</div>
+        <div class="fader-wrap">
+          <input
+            id="masterFader"
+            class="vertical-fader"
+            type="range"
+            min="0"
+            max="1.5"
+            step="0.01"
+            value="1"
+            aria-label="Master volume"
+          />
+        </div>
+        <div class="master-btns">
+          <button id="masterMuteBtn" type="button" class="mini-btn">MUTE</button>
+          <button id="clearSoloBtn" type="button" class="mini-btn">CLR SOLO</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

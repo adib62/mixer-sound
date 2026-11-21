@@ -1,0 +1,7 @@
+__pycache__/
+venv/
+.venv/
+catatan.env
+downloads/
+stem_cache/
+temp_clips/
